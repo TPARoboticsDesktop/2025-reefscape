@@ -4,7 +4,7 @@
 
 #pragma once
 
-#include "AHRS.h"
+#include "studica/AHRS.h"
 // #include <frc/ADIS16470_IMU.h>
 #include <frc/filter/SlewRateLimiter.h>
 #include <frc/geometry/Pose2d.h>
@@ -124,7 +124,7 @@ class DriveSubsystem : public frc2::SubsystemBase {
 
   // The gyro sensor
   // frc::ADIS16470_IMU m_gyro;
-  AHRS ahrs{frc::I2C::Port::kMXP};
+  studica::AHRS ahrs{studica::AHRS::NavXComType::kMXP_SPI};
   double getNavXHeading();
 
   // Slew rate filter variables for controlling lateral acceleration

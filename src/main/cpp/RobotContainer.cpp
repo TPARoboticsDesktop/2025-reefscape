@@ -19,43 +19,28 @@
 #include <utility>
 
 #include "Constants.h"
+#include "subsystems/DriveSubsystem.h"
 #include "LimelightHelpers.h"
 
 
 using namespace DriveConstants;
 
 RobotContainer::RobotContainer() {
-        
+    frc::SmartDashboard::PutData("auto modes", &m_chooser);
+     
   // Initialize all of your commands and subsystems here
 
   // Configure the button bindingsR
   ConfigureButtonBindings();
 
-    // Set up default drive command
+  // Set up default drive command
   // The left stick controls translation of the robot.
   // Turning is controlled by the X axis of the right stick.
   m_drive.SetDefaultCommand(frc2::RunCommand(
       [this] {
-        //set default values based on joysticks
-        double y = -frc::ApplyDeadband(m_driverController.GetLeftY(), OIConstants::kDriveDeadband);
-        if (y<0){
-            y = -y*y*1.09;
-        }
-        else
-        {
-            y = y*y*y*1.09;
-        }
-        double x = -frc::ApplyDeadband(m_driverController.GetLeftX(), OIConstants::kDriveDeadband);
-        if (x<0){
-            x = -x*x*1.09;
-        }
-        else
-        {
-            x = x*x*1.09;
-        }
-        double theta = -frc::ApplyDeadband(m_driverController.GetRightX(), OIConstants::kDriveDeadband)*0.8;
-      }
-  ))
+      },
+      {&m_drive}));
+
 }
 
 void RobotContainer::ConfigureButtonBindings() {
@@ -66,10 +51,14 @@ void RobotContainer::ConfigureButtonBindings() {
         .WhileTrue(new frc2::RunCommand([this] { m_drive.SetX(); }, {&m_drive}));
         */
     
-   
+    
 }
     
 
 frc2::Command* RobotContainer::GetAutonomousCommand() {
  return m_chooser.GetSelected();
+}
+
+double RobotContainer::DegreeToRad(double degree){
+    return degree*3.14159/180;
 }

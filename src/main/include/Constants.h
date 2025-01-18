@@ -112,10 +112,10 @@ constexpr double kTurningFF = 0;
 constexpr double kTurningMinOutput = -1;
 constexpr double kTurningMaxOutput = 1;
 
-constexpr rev::SparkMax::IdleMode kDrivingMotorIdleMode =
-    rev::SparkMax::IdleMode::kBrake;
-constexpr rev::SparkMax::IdleMode kTurningMotorIdleMode =
-    rev::SparkMax::IdleMode::kBrake;
+constexpr rev::spark::SparkMax::IdleMode kDrivingMotorIdleMode =
+    rev::spark::SparkMax::IdleMode::kBrake;
+constexpr rev::spark::SparkMax::IdleMode kTurningMotorIdleMode =
+    rev::spark::SparkMax::IdleMode::kBrake;
 
 constexpr units::ampere_t kDrivingMotorCurrentLimit = 50_A;
 constexpr units::ampere_t kTurningMotorCurrentLimit = 20_A;
