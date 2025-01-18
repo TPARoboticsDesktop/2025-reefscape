@@ -3,7 +3,7 @@
 // the WPILib BSD license file in the root directory of this project.
 
 #include <frc/trajectory/TrapezoidProfile.h>
-#include <rev/CANSparkMax.h>
+#include <rev/SparkMax.h>
 #include <units/acceleration.h>
 #include <units/angular_acceleration.h>
 #include <units/angular_velocity.h>
@@ -112,10 +112,10 @@ constexpr double kTurningFF = 0;
 constexpr double kTurningMinOutput = -1;
 constexpr double kTurningMaxOutput = 1;
 
-constexpr rev::CANSparkMax::IdleMode kDrivingMotorIdleMode =
-    rev::CANSparkMax::IdleMode::kBrake;
-constexpr rev::CANSparkMax::IdleMode kTurningMotorIdleMode =
-    rev::CANSparkMax::IdleMode::kBrake;
+constexpr rev::SparkMax::IdleMode kDrivingMotorIdleMode =
+    rev::SparkMax::IdleMode::kBrake;
+constexpr rev::SparkMax::IdleMode kTurningMotorIdleMode =
+    rev::SparkMax::IdleMode::kBrake;
 
 constexpr units::ampere_t kDrivingMotorCurrentLimit = 50_A;
 constexpr units::ampere_t kTurningMotorCurrentLimit = 20_A;

@@ -7,9 +7,9 @@
 #include <frc/geometry/Rotation2d.h>
 #include <frc/kinematics/SwerveModulePosition.h>
 #include <frc/kinematics/SwerveModuleState.h>
-#include <rev/CANSparkMax.h>
+#include <rev/SparkMax.h>
 #include <rev/SparkAbsoluteEncoder.h>
-#include <rev/SparkPIDController.h>
+#include <rev/SparkClosedLoopController.h>
 #include <rev/SparkRelativeEncoder.h>
 
 class MAXSwerveModule {
@@ -50,8 +50,8 @@ class MAXSwerveModule {
   void ResetEncoders();
 
  private:
-  rev::CANSparkMax m_drivingSparkMax;
-  rev::CANSparkMax m_turningSparkMax;
+  rev::SparkMax m_drivingSparkMax;
+  rev::SparkMax m_turningSparkMax;
 
   rev::SparkRelativeEncoder m_drivingEncoder =
       m_drivingSparkMax.GetEncoder(rev::SparkRelativeEncoder::Type::kHallSensor);
@@ -59,9 +59,9 @@ class MAXSwerveModule {
       m_turningSparkMax.GetAbsoluteEncoder(
           rev::SparkAbsoluteEncoder::Type::kDutyCycle);
 
-  rev::SparkPIDController m_drivingPIDController =
+  rev::SparkClosedLoopController m_drivingPIDController =
       m_drivingSparkMax.GetPIDController();
-  rev::SparkPIDController m_turningPIDController =
+  rev::SparkClosedLoopController m_turningPIDController =
       m_turningSparkMax.GetPIDController();
 
   double m_chassisAngularOffset = 0;

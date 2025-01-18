@@ -54,45 +54,9 @@ RobotContainer::RobotContainer() {
             x = x*x*1.09;
         }
         double theta = -frc::ApplyDeadband(m_driverController.GetRightX(), OIConstants::kDriveDeadband)*0.8;
-
-        //set pid to 90 as a test
-        if(m_driverController.GetLeftBumper())
-        {   
-            if(isRed){
-                rotationPID.EnableContinuousInput(0,360);
-                theta = rotationPID.Calculate(m_drive.GetNormalizedHeading(), 270.0);
-                if(LimelightHelpers::getTY("") != 0)
-                    x = -translationPID.Calculate(LimelightHelpers::getTY(""), desiredPosYAmp);
-                if(LimelightHelpers::getTX("") != 0)
-                    y = translationPID.Calculate(LimelightHelpers::getTX(""), 0.0);
-            }
-            else{
-                rotationPID.EnableContinuousInput(0,360);
-                theta = rotationPID.Calculate(m_drive.GetNormalizedHeading(), 90.0);
-                if(LimelightHelpers::getTY("") != 0)
-                    x = translationPID.Calculate(LimelightHelpers::getTY(""), desiredPosYAmp);
-                if(LimelightHelpers::getTX("") != 0)
-                    y = -translationPID.Calculate(LimelightHelpers::getTX(""), 0.0);
-            }
-        }
-
-        else if(m_driverController.GetRightBumper() and 
-                ((isRed and LimelightHelpers::getFiducialID("") == 4.0) or 
-                (!isRed and LimelightHelpers::getFiducialID("") == 7.0)))
-        {
-            rotationPID.DisableContinuousInput();
-            theta = rotationPID.Calculate(LimelightHelpers::getTX(""), 0.0);
-        }
-
-        m_drive.Drive(
-            units::meters_per_second_t{y},
-            units::meters_per_second_t{x},
-            units::radians_per_second_t{theta},
-            true, true);
-      },
-      {&m_drive}));
-
-   }
+      }
+  ))
+}
 
 void RobotContainer::ConfigureButtonBindings() {
     //set wheels to the X configuration
