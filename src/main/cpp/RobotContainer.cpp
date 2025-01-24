@@ -44,14 +44,28 @@ RobotContainer::RobotContainer() {
 }
 
 void RobotContainer::ConfigureButtonBindings() {
-    //set wheels to the X configuration
-    /*
+    ; // TODO: Configure button bindings
+     //spin intake
     frc2::JoystickButton(&m_driverController,
-                       frc::XboxController::Button::kRightBumper)
-        .WhileTrue(new frc2::RunCommand([this] { m_drive.SetX(); }, {&m_drive}));
-        */
-    
-    
+                        frc::XboxController::Button::kA)
+       .WhileFalse(new frc2::RunCommand([this] { m_IntakeSubsystem.SetIntakeMotorSpeed(0);})).WhileTrue(new frc2::RunCommand([this] {m_IntakeSubsystem.SetIntakeMotorSpeed(-.6);}));
+
+       //Raise climber
+    frc2::JoystickButton(&m_driverController,
+                        frc::XboxController::Button::kY)
+        .OnTrue(new frc2::InstantCommand([this] { m_ClimberSubsystem.extendPiston();}));
+
+//Lower climber
+    frc2::JoystickButton(&m_driverController,
+                        frc::XboxController::Button::kX)
+        .OnTrue(new frc2::InstantCommand([this] { m_ClimberSubsystem.retractPiston();}));
+
+    //raise elevator (simple)
+    frc2::JoystickButton(&m_driverController,
+                        frc::XboxController::Axis::kRightTrigger)
+        .WhileTrue(new frc2::InstantCommand([this] { m_ElevatorSubsystem.raiseElevatorSimple(1);}));
+
+        //.GetRightTriggerAxis
 }
     
 
