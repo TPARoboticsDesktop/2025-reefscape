@@ -63,7 +63,6 @@ void RobotContainer::ConfigureButtonBindings() {
     frc2::JoystickButton(&m_driverController,
                         frc::XboxController::Axis::kRightTrigger)
         .WhileTrue(new frc2::InstantCommand([this] { m_ElevatorSubsystem.raiseElevatorSimple(1);}));
-
         //.GetRightTriggerAxis
 }
     

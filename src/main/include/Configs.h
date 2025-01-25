@@ -65,4 +65,47 @@ class MAXSwerveModule {
     return turningConfig;
   }
 };
+
+  static SparkMaxConfig& IntakeConfig() {
+    static SparkMaxConfig intakeConfig{};
+
+    // Use module constants to calculate conversion factor
+    double turningFactor = 2 * std::numbers::pi;
+
+    intakeConfig.SetIdleMode(SparkBaseConfig::IdleMode::kBrake)
+        .SmartCurrentLimit(20);
+    intakeConfig
+        .absoluteEncoder
+        .Inverted(false)
+        .PositionConversionFactor(turningFactor)          // radians
+        .VelocityConversionFactor(turningFactor / 60.0);  // radians per second
+    intakeConfig.closedLoop
+        .SetFeedbackSensor(ClosedLoopConfig::FeedbackSensor::kAbsoluteEncoder)
+        // These are example gains you may need to them for your own robot!
+        .Pid(1, 0, 0)
+        .OutputRange(-1, 1);
+
+    return intakeConfig;
+  }
+  static SparkMaxConfig& ElevatorConfig() {
+    static SparkMaxConfig elevatorConfig{};
+
+    // Use module constants to calculate conversion factor
+    double turningFactor = 2 * std::numbers::pi;
+
+    elevatorConfig.SetIdleMode(SparkBaseConfig::IdleMode::kBrake)
+        .SmartCurrentLimit(20);
+    elevatorConfig
+        .absoluteEncoder
+        .Inverted(false)
+        .PositionConversionFactor(turningFactor)          // radians
+        .VelocityConversionFactor(turningFactor / 60.0);  // radians per second
+    elevatorConfig.closedLoop
+        .SetFeedbackSensor(ClosedLoopConfig::FeedbackSensor::kAbsoluteEncoder)
+        // These are example gains you may need to them for your own robot!
+        .Pid(1, 0, 0)
+        .OutputRange(-1, 1);
+
+    return elevatorConfig;
+  }
 }  // namespace Configs
