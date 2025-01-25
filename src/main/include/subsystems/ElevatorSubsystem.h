@@ -12,6 +12,7 @@ class ElevatorSubsystem : public frc2::SubsystemBase {
 public:
     ElevatorSubsystem();
     void raiseElevatorSimple(double speed);
+    void lowerElevatorSimple(double speed);
 
 private:
     rev::spark::SparkMax m_IntakeMotor{20, rev::spark::SparkMax::MotorType::kBrushless};  // Replace '20' with the CAN ID of the Spark MAX

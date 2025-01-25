@@ -14,3 +14,6 @@ ElevatorSubsystem::ElevatorSubsystem() {
 void ElevatorSubsystem::raiseElevatorSimple(double speed) {
         m_IntakeMotor.Set(speed);
 }
+void ElevatorSubsystem::lowerElevatorSimple(double speed) {
+        m_IntakeMotor.Set(speed);
+}

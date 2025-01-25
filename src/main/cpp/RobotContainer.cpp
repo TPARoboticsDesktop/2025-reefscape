@@ -33,11 +33,19 @@ RobotContainer::RobotContainer() {
   // Configure the button bindingsR
   ConfigureButtonBindings();
 
-  // Set up default drive command
+ // Set up default drive command
   // The left stick controls translation of the robot.
   // Turning is controlled by the X axis of the right stick.
   m_drive.SetDefaultCommand(frc2::RunCommand(
       [this] {
+        m_drive.Drive(
+            -units::meters_per_second_t{frc::ApplyDeadband(
+                m_driverController.GetLeftY(), OIConstants::kDriveDeadband)},
+            -units::meters_per_second_t{frc::ApplyDeadband(
+                m_driverController.GetLeftX(), OIConstants::kDriveDeadband)},
+            -units::radians_per_second_t{frc::ApplyDeadband(
+                m_driverController.GetRightX(), OIConstants::kDriveDeadband)},
+            true,true);
       },
       {&m_drive}));
 
@@ -62,8 +70,13 @@ void RobotContainer::ConfigureButtonBindings() {
     // Raise elevator (simple) - right trigger
     frc2::JoystickButton(&m_driverController,
                         frc::XboxController::Axis::kRightTrigger)
-        .WhileTrue(new frc2::InstantCommand([this] { m_ElevatorSubsystem.raiseElevatorSimple(1);}));
+        .WhileTrue(new frc2::InstantCommand([this] { m_ElevatorSubsystem.raiseElevatorSimple(0.1 * m_driverController.GetRightTriggerAxis());}));
         //.GetRightTriggerAxis
+
+         // lower elevator (simple) - left trigger
+    frc2::JoystickButton(&m_driverController,
+                        frc::XboxController::Axis::kLeftTrigger)
+        .WhileTrue(new frc2::InstantCommand([this] { m_ElevatorSubsystem.raiseElevatorSimple(-0.1 * m_driverController.GetLeftTriggerAxis());}));
 }
     
 

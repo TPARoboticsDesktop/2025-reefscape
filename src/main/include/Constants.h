@@ -147,21 +147,6 @@ namespace ClimberConstants {
     constexpr int climberExtendChannel2 = 4;
     constexpr int climberRetractChannel2 = 2;
 }
-
-namespace ShooterConstants {
-    constexpr int shooterTopCANID = 11;
-    constexpr int shooterBottonCANID = 12;
-    constexpr double ampTopShooterSpeed = 50;//700;
-    constexpr double ampBottomShooterSpeed = 1450; //800;
-    constexpr double speakerTopShooterSpeed = 1800;
-    constexpr double speakerBottomShooterSpeed = 1800;
-    constexpr double desiredPosYAmp = 15.0;
-    constexpr double desiredPosYSpeakr = -15.5;
-    constexpr double desiredPosXSpeakr = 0.0;
-    constexpr double shooterP = 1.5e-4;
-    constexpr double shooterI = 5e-7;
-    constexpr double shooterD = 0;
-    constexpr int LaunchMotorLeftCANID = 13;
-    constexpr int LaunchMotorRightCANID = 14;
-    constexpr double LaunchMotorSpeed = 0.5;
+namespace ElevatorConstants{
+    constexpr double elevatorSpeedFactor = 0.1; // TODO: TUNE
 }

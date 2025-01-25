@@ -2,6 +2,8 @@
 
 #include <frc2/command/CommandPtr.h>
 
+#include "subsystems/DriveSubsystem.h"
+
 #include "LimelightHelpers.h"
 
 #include <frc2/command/Commands.h>
@@ -17,4 +19,5 @@
 #include "Constants.h"
 
 namespace autos {
+    frc2::CommandPtr Baseline(DriveSubsystem& drive);
 }
