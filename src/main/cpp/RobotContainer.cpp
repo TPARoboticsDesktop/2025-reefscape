@@ -44,23 +44,22 @@ RobotContainer::RobotContainer() {
 }
 
 void RobotContainer::ConfigureButtonBindings() {
-    ; // TODO: Configure button bindings
-     //spin intake
+    // Spin intake - A button
     frc2::JoystickButton(&m_driverController,
                         frc::XboxController::Button::kA)
        .WhileFalse(new frc2::RunCommand([this] { m_IntakeSubsystem.SetIntakeMotorSpeed(0);})).WhileTrue(new frc2::RunCommand([this] {m_IntakeSubsystem.SetIntakeMotorSpeed(-.6);}));
 
-       //Raise climber
+    // Raise climber - Y button
     frc2::JoystickButton(&m_driverController,
                         frc::XboxController::Button::kY)
-        .OnTrue(new frc2::InstantCommand([this] { m_ClimberSubsystem.extendPiston();}));
+        .OnTrue(new frc2::InstantCommand([this] { m_ClimberSubsystem.raiseClimber();}));
 
-//Lower climber
+    //Lower climber - X button
     frc2::JoystickButton(&m_driverController,
                         frc::XboxController::Button::kX)
-        .OnTrue(new frc2::InstantCommand([this] { m_ClimberSubsystem.retractPiston();}));
+        .OnTrue(new frc2::InstantCommand([this] { m_ClimberSubsystem.lowerClimber();}));
 
-    //raise elevator (simple)
+    // Raise elevator (simple) - right trigger
     frc2::JoystickButton(&m_driverController,
                         frc::XboxController::Axis::kRightTrigger)
         .WhileTrue(new frc2::InstantCommand([this] { m_ElevatorSubsystem.raiseElevatorSimple(1);}));

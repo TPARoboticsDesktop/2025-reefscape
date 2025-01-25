@@ -10,8 +10,8 @@ using namespace ClimberConstants;
 class ClimberSubsystem : public frc2::SubsystemBase {
 public:
     ClimberSubsystem();
-    void extendPiston();
-    void retractPiston();
+    void raiseClimber();
+    void lowerClimber();
 
 private:
     frc::PneumaticHub m_PH{pneumaticHubCANID};
