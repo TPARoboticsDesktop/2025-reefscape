@@ -13,15 +13,15 @@ public:
     ElevatorSubsystem();
     void raiseElevatorSimple(double speed);
     void lowerElevatorSimple(double speed);
-    void raiseElevatorTiered(); 
+    void raiseElevatorTiered();
     void lowerElevatorTiered();
     int getLevel();
 
 private:
-    rev::spark::SparkMax m_IntakeMotor{20, rev::spark::SparkMax::MotorType::kBrushless};  // Replace '20' with the CAN ID of the Spark MAX
+    rev::spark::SparkMax m_ElevatorMotor{20, rev::spark::SparkMax::MotorType::kBrushless};  // Replace '20' with the CAN ID of the Spark MAX
 
     rev::spark::SparkRelativeEncoder m_Encoder =
-        m_IntakeMotor.GetEncoder();
-    rev::spark::SparkClosedLoopController m_IntakePIDController =
-        m_IntakeMotor.GetClosedLoopController();
+        m_ElevatorMotor.GetEncoder();
+    rev::spark::SparkClosedLoopController m_ElevatorPIDController =
+        m_ElevatorMotor.GetClosedLoopController();
 };
