@@ -21,40 +21,24 @@ void ElevatorSubsystem::lowerElevatorSimple(double speed) {
 }
 
 void ElevatorSubsystem::raiseElevatorTiered() {
-    int level = this->getLevel();
-    if (level == 4) {
+    if (targetLevel >= 5) {
         return;
     }
-    int nextLevel = level + 1;
 
-    double encoderPosition = ElevatorConstants::encoderTiers[nextLevel];
+    targetLevel++;
+
+    double encoderPosition = ElevatorConstants::encoderTiers[targetLevel];
     this->m_ElevatorPIDController.SetReference(encoderPosition, SparkMax::ControlType::kPosition);
-
-    /*
-    m_ElevatorMotor.Set(100);
-    while (level < nextLevel){
-        level = this->getLevel();
-    } 
-    m_ElevatorMotor.Set(0);
-    */
 }
 void ElevatorSubsystem::lowerElevatorTiered() {
-    int level = this->getLevel();
-    if (level == 1) {
+   if (targetLevel <= 0) {
         return;
     }
-    int nextLevel = level - 1;
 
-    double encoderPosition = ElevatorConstants::encoderTiers[nextLevel];
+    targetLevel--;
+
+    double encoderPosition = ElevatorConstants::encoderTiers[targetLevel];
     this->m_ElevatorPIDController.SetReference(encoderPosition, SparkMax::ControlType::kPosition);
-
-    /*
-    m_ElevatorMotor.Set(-100);
-    while (level > nextLevel){
-        level = this->getLevel();
-    } 
-    m_ElevatorMotor.Set(0);
-    */
 }
 
 int ElevatorSubsystem::getLevel() {
