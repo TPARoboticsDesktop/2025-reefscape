@@ -63,3 +63,21 @@ int ElevatorSubsystem::getLevel() {
         return 5;
     }
 }
+
+void ElevatorSubsystem::setElevatorLevel(int level) {
+    targetLevel = level;
+    double encoderPosition = ElevatorConstants::encoderTiers[targetLevel];
+    this->m_ElevatorPIDController.SetReference(encoderPosition, SparkMax::ControlType::kPosition);
+}
+
+void ElevatorSubsystem::raiseLevel4() {
+   int currentLevel = this -> getLevel();
+    while (currentLevel < 4) {
+            this -> raiseElevatorTiered();
+            currentLevel++;
+    }
+    while (currentLevel > 4) {
+            this -> lowerElevatorTiered();
+            currentLevel--;
+    }
+}

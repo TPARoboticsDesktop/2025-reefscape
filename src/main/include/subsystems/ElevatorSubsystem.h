@@ -16,7 +16,11 @@ public:
     void raiseElevatorTiered();
     void lowerElevatorTiered();
     int getLevel();
+    void setElevatorLevel(int level);
     int targetLevel = 0;
+
+    //auton commands
+    void raiseLevel4();
 
 private:
     rev::spark::SparkMax m_ElevatorMotor{20, rev::spark::SparkMax::MotorType::kBrushless};  // Replace '20' with the CAN ID of the Spark MAX

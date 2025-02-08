@@ -16,6 +16,7 @@
 #include <units/angle.h>
 #include <units/velocity.h>
 #include <pathplanner/lib/commands/PathPlannerAuto.h>
+#include <pathplanner/lib/auto/NamedCommands.h>
 
 #include <utility>
 
@@ -61,7 +62,7 @@ RobotContainer::RobotContainer() {
   frc::SmartDashboard::PutData("Auto Chooser", &autoChooser);
   
   // Register Named Commands. You must pass either a CommandPtr rvalue or a shared_ptr to the command, not the command directly.
-  //gNamedCommands::registerCommand("autoBalance", std::move(m_swerve.autoBalanceCommand())); // <- This example method returns CommandPtr
+  NamedCommands::registerCommand("RaiseLevel4", std::move(autos::RaiseLevel4(&m_ElevatorSubsystem)));
     
 
 }

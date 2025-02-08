@@ -7,19 +7,13 @@
         {
           "type": "path",
           "data": {
-            "pathName": "test"
-          }
-        },
-        {
-          "type": "path",
-          "data": {
-            "pathName": "drive forward"
+            "pathName": "1 coral path 1"
           }
         },
         {
           "type": "named",
           "data": {
-            "name": null
+            "name": "RaiseLevel4"
           }
         }
       ]
