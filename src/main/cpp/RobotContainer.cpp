@@ -15,6 +15,7 @@
 #include <frc2/command/button/JoystickButton.h>
 #include <units/angle.h>
 #include <units/velocity.h>
+#include <pathplanner/lib/commands/PathPlannerAuto.h>
 
 #include <utility>
 
@@ -24,6 +25,7 @@
 
 
 using namespace DriveConstants;
+using namespace pathplanner;
 
 RobotContainer::RobotContainer() {
     frc::SmartDashboard::PutData("auto modes", &m_chooser);
@@ -48,6 +50,19 @@ RobotContainer::RobotContainer() {
             true,true);
       },
       {&m_drive}));
+
+    
+    // Build an auto chooser. This will use frc2::cmd::None() as the default option.
+  autoChooser = AutoBuilder::buildAutoChooser();
+
+  // Another option that allows you to specify the default auto by its name
+  // autoChooser = AutoBuilder::buildAutoChooser("My Default Auto");
+
+  frc::SmartDashboard::PutData("Auto Chooser", &autoChooser);
+  
+  // Register Named Commands. You must pass either a CommandPtr rvalue or a shared_ptr to the command, not the command directly.
+  //gNamedCommands::registerCommand("autoBalance", std::move(m_swerve.autoBalanceCommand())); // <- This example method returns CommandPtr
+    
 
 }
 
@@ -80,8 +95,9 @@ void RobotContainer::ConfigureButtonBindings() {
 }
     
 
-frc2::Command* RobotContainer::GetAutonomousCommand() {
- return m_chooser.GetSelected();
+frc2::Command* RobotContainer::getAutonomousCommand() {
+  // Returns a frc2::Command* that is freed at program termination
+  return autoChooser.GetSelected();
 }
 
 double RobotContainer::DegreeToRad(double degree){

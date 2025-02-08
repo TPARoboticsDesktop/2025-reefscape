@@ -17,7 +17,3 @@
 #include <frc/trajectory/TrajectoryGenerator.h>
 
 #include "Constants.h"
-
-namespace autos {
-    frc2::CommandPtr Baseline(DriveSubsystem& drive);
-}

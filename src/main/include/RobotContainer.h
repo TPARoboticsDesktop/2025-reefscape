@@ -33,7 +33,7 @@ class RobotContainer {
  public:
   RobotContainer();
 
-  frc2::Command* GetAutonomousCommand();
+  frc2::Command* getAutonomousCommand();
 
  private:
   // The driver's controller
@@ -51,6 +51,7 @@ class RobotContainer {
 
   // The chooser for the autonomous routines
   frc::SendableChooser<frc2::Command*> m_chooser;
+  frc::SendableChooser<frc2::Command*> autoChooser;
 
   frc::PIDController translationPID{0.0125, 1.0e-3, 0.0};
   frc::PIDController rotationPID{0.01, 5.5e-3, 0.0};
